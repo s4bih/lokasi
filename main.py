@@ -1,4 +1,5 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,request
+from datetime import*
 from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:@127.0.0.1/BlogApp"
@@ -7,8 +8,9 @@ db = SQLAlchemy(app)
 class Contact(db.Model):
     sno = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
+
     email = db.Column(db.String(50), nullable=False)
-    msg = db.Column(db.String(150), nullable=False)
+    massage = db.Column(db.String(150), nullable=False)
     date = db.Column(db.String(20), nullable=True)
 @app.route('/')
 def home():
@@ -23,12 +25,25 @@ def about():
 @app.route('/login')
 def login():
     return render_template('login.html')
-@app.route('/contact')
+@app.route('/contact',methods=['GET','POST'])
+
+
+
 def contact():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        msg = request.form['message']
+        entry = Contact(name=name, email=email, massage=msg, date=datetime.today().date())
+        db.session.add(entry)
+        db.session.commit()
+        print(name, email, msg)
     return render_template('contact.html')
 
 
 if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)
 
 
