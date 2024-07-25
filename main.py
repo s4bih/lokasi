@@ -1,10 +1,26 @@
 from flask import Flask,render_template,request
-from datetime import*
 from flask_sqlalchemy import SQLAlchemy
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:@127.0.0.1/BlogApp"
-db = SQLAlchemy(app)
+from datetime import*
+import json
 
+app = Flask(__name__)
+
+with open('config.json', 'r') as c:
+    params = json.load(c)["parameters"]
+
+
+
+
+if params["local_server"]:
+    app.config['SQLALCHEMY_DATABASE_URI'] = params['local_url']
+
+else:
+    app.config['SQLALCHEMY_DATABASE_URI'] = params['prod_url']
+
+SECRET_KEY = params['secret_key']
+
+app.config['SECRET_KEY']
+db=SQLAlchemy(app)
 class Contact(db.Model):
     sno = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
@@ -14,17 +30,17 @@ class Contact(db.Model):
     date = db.Column(db.String(20), nullable=True)
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('index.html',params=params)
 @app.route('/post')
 def post():
-    return render_template('post.html')
+    return render_template('post.html',params=params)
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    return render_template('about.html',params=params)
 
 @app.route('/login')
 def login():
-    return render_template('login.html')
+    return render_template('login.html',params=params)
 @app.route('/contact',methods=['GET','POST'])
 
 
@@ -44,7 +60,8 @@ def contact():
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
+    app.run(debug=True, port=8080)
+
 
 
 
