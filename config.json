@@ -4,7 +4,7 @@
     "local_server":true,
     "local_url": "mysql://root@127.0.0.1/blogapp",
     "prod_url":"",
-    "TITLE": "Blog App"
+    "TITLE": "BLog App"
   }
 
 

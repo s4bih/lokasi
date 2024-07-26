@@ -6,16 +6,18 @@
 						<section id="intro">
        <a href="#" class="logo"><img src="images/logo.jpg" alt="" /></a>
        <header>
-          <h2>Future Imperfect</h2>
+          <h2>{{params.TITLE}}</h2>
           <p>Another fine responsive site template by <a href="http://html5up.net">HTML5 UP</a></p>
        </header>
     </section>
 
 						<!-- Post -->
+
 							<article class="post">
 								<header>
 									<div class="title">
-										<h2><a href="single.html">Magna sed adipiscing</a></h2>
+										<h2><a href="single.html">sabih </a></h2>
+										<h2>testing </h2>
 										<p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p>
 									</div>
 									<div class="meta">
@@ -37,11 +39,13 @@
 								</footer>
 							</article>
 
+
 						<!-- Post -->
+{% for post in posts %}
 							<article class="post">
 								<header>
 									<div class="title">
-										<h2><a href="single.html">Ultricies sed magna euismod enim vitae gravida</a></h2>
+										<h2><a href="single.html">{{post.title}}</a></h2>
 										<p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p>
 									</div>
 									<div class="meta">
@@ -62,6 +66,7 @@
 									</ul>
 								</footer>
 							</article>
+{% endfor %}
 
 						<!-- Post -->
 							<article class="post">

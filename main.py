@@ -28,9 +28,24 @@ class Contact(db.Model):
     email = db.Column(db.String(50), nullable=False)
     massage = db.Column(db.String(150), nullable=False)
     date = db.Column(db.String(20), nullable=True)
+class Posts(db.Model):
+    post_id = db.Column(db.Integer, primary_key=True)
+    title = db.column(db.String(300))
+    sub_title = db.column(db.String(500))
+    location = db.column(db.String(300))
+    author = db.column(db.String(100))
+    date_posted = db.column(db.Date)
+    image = db.column(db.String(100))
+    content_1 = db.column(db.String(db.Text))
+    content_2 = db.column(db.String(db.Text))
+
 @app.route('/')
 def home():
-    return render_template('index.html',params=params)
+    db.session.commit()
+    post_data = Posts.query.all()
+    return render_template('index.html',posts=post_data,params=params)
+
+
 @app.route('/post')
 def post():
     return render_template('post.html',params=params)
