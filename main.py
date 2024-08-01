@@ -38,18 +38,20 @@ class Post_id(db.Model):
     image = db.Column(db.String(100))
     content_1 = db.Column(db.String(db.Text))
     content_2 = db.Column(db.String(db.Text))
+    slug = db.Column(db.String(500),unique=True)
 
 @app.route('/')
 def home():
     db.session.commit()
     post_data = Post_id.query.all()
-    print(post_data)
+
     return render_template('index.html',posts=post_data,params=params)
 
 
-@app.route('/post')
-def post():
-    return render_template('post.html',params=params)
+@app.route("/post/<slug>",methods=['GET','POST'])
+def post(slug):
+    p_data = Post_id.query.filter_by(slug=slug).first()
+    return render_template('post.html',post=p_data,params=params)
 @app.route('/about')
 def about():
     return render_template('about.html',params=params)
@@ -70,7 +72,7 @@ def contact():
         db.session.add(entry)
         db.session.commit()
         print(name, email, msg)
-    return render_template('contact.html')
+    return render_template('contact.html',params=params)
 
 
 if __name__ == '__main__':
