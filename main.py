@@ -2,7 +2,7 @@ from flask import Flask,render_template,request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import*
 import json
-
+import math
 app = Flask(__name__)
 
 with open('config.json', 'r') as c:
@@ -44,8 +44,25 @@ class Post_id(db.Model):
 def home():
     db.session.commit()
     post_data = Post_id.query.all()
+    n=2
+    last = math.ceil(len(post_data)/n)
+    page=request.args.get('page')
+    if (not str(page).isnumeric()):
+        page=1
+    page=int(page)
+    j=(page-1)*n
+    postr= post_data[j:j+n]
+    if page==1:
+        prev="#"
+        next="/?page="+str(page+1)
+    elif page==last:
+        prev="/?page="+str(page-1)
+        next="#"
+    else:
+        prev="/?page="+str(page-1)
+        next="/?page="+str(page+1)
+    return render_template('index.html', posts=postr, params=params,prev=prev,next=next)
 
-    return render_template('index.html',posts=post_data,params=params)
 
 
 @app.route("/post/<slug>",methods=['GET','POST'])
