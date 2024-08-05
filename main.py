@@ -82,6 +82,7 @@ def login():
 
 def contact():
     if request.method == 'POST':
+        sno = db.column("sno",db.integer, primary_key=True)
         name = request.form['name']
         email = request.form['email']
         msg = request.form['message']
@@ -90,7 +91,12 @@ def contact():
         db.session.commit()
         print(name, email, msg)
     return render_template('contact.html',params=params)
+@app.route('/admin')
+def admin():
+    post = Post_id.query.filter_by().all()
+    contact=Contact.query.filter_by().all()
 
+    return render_template('admin/index.html',params=params)
 
 if __name__ == '__main__':
     with app.app_context():
