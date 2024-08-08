@@ -91,12 +91,18 @@ def contact():
         db.session.commit()
         print(name, email, msg)
     return render_template('contact.html',params=params)
-@app.route('/admin')
+@app.route('/admin',methods=['GET','POST'])
 def admin():
     post = Post_id.query.filter_by().all()
     contact=Contact.query.filter_by().all()
 
-    return render_template('admin/index.html',params=params)
+    return render_template('admin/index.html',params=params,posts=post,contact=contact)
+@app.route('/edit')
+def edit():
+    return render_template('admin/edit.html',params=params)
+
+
+
 
 if __name__ == '__main__':
     with app.app_context():

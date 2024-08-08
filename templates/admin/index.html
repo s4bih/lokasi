@@ -30,30 +30,24 @@
         <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">post_id</th>
+      <th scope="col">title</th>
+      <th scope="col">action</th>
+
     </tr>
   </thead>
   <tbody>
+  {%for post in posts%}
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <th scope="row">{{post.post_id}}</th>
+      <td>{{post.title}}</td>
+      <td>
+      <a href=""><button type="button" class="btn btn-info" >edit</button></a>
+      <a href=""><button type="button" class="btn btn-danger" >DELETE</button></a>
+      </td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
+    {%endfor%}
+
   </tbody>
 </table>
     </div>
@@ -61,7 +55,29 @@
 </div>
 <div class="collapse" id="contact">
     <div class="card card-body">
-        Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user
+        <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">sno</th>
+      <th scope="col">name</th>
+      <th scope="col">email</th>
+    </tr>
+  </thead>
+  <tbody>
+  {%for cont in contact%}
+    <tr>
+      <th scope="row">{{cont.sno}}</th>
+      <td>{{cont.name}}</td>
+      <td>{{cont.email}}</td>
+      <td>
+      <a href=""><button type="button" class="btn btn-info" >view</button></a>
+      <a href=""><button type="button" class="btn btn-danger" >DELETE</button></a>
+       </td>
+    </tr>
+
+    {%endfor%}
+  </tbody>
+</table>
     </div>
 </div>
 
