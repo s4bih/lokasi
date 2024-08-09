@@ -15,17 +15,59 @@
   </head>
   <body>
     <h1> admin dashboard</h1>
-    <form>
+    <form method="post" action="/edit/{{post.post_id}}">
   <div class="row mb-3">
-    <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+    <label for="inputEmail3" class="col-sm-2 col-form-label">title</label>
     <div class="col-sm-10">
-      <input type="email" class="form-control" id="inputEmail3">
+      <input type="text" class="form-control" name="title" placeholder="enter post title" id="inputEmail3">
     </div>
   </div>
   <div class="row mb-3">
-    <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+    <label for="inputPassword3" class="col-sm-2 col-form-label">subtitle</label>
     <div class="col-sm-10">
-      <input type="password" class="form-control" id="inputPassword3">
+      <input type="text" name="subtitle" placeholder="enter post subtitle" class="form-control" id="inputPassword3">
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">location</label>
+    <div class="col-sm-10">
+      <input type="text" name="location" placeholder="enter post location" class="form-control" >
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">author</label>
+    <div class="col-sm-10">
+      <input type="text" name="author" placeholder="enter post author" class="form-control" >
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">date</label>
+    <div class="col-sm-10">
+      <input type="date" name="subtitle" placeholder="enter post subtitle" class="form-control" >
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">image</label>
+    <div class="col-sm-10">
+      <input type="text" name="subtitle" placeholder="enter post subtitle" class="form-control" >
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">content1</label>
+    <div class="col-sm-10">
+      <textarea  name="content1" placeholder="enter post subtitle" class="form-control" ></textarea>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">content2</label>
+    <div class="col-sm-10">
+      <textarea name="content2" placeholder="enter post subtitle" class="form-control" ></textarea>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">slug</label>
+    <div class="col-sm-10">
+      <input type="text" name="slug" placeholder="enter post slug" class="form-control" >
     </div>
   </div>
   <fieldset class="row mb-3">

@@ -97,9 +97,26 @@ def admin():
     contact=Contact.query.filter_by().all()
 
     return render_template('admin/index.html',params=params,posts=post,contact=contact)
-@app.route('/edit')
-def edit():
-    return render_template('admin/edit.html',params=params)
+@app.route('/edit/<string:post_id>',methods=['GET','POST'])
+def edit(post_id):
+    if request.method == 'POST':
+        ntitle = request.form.get('title')
+        nsub_title = request.form.get('sub_title')
+        nlocation = request.form.get('location')
+        nauthor = request.form.get('author')
+        ndate_posted = request.form.get('date_posted')
+        nimage = request.form.get('image')
+        ncontent_1 = request.form.get('content_1')
+        ncontent_2 = request.form.get('content_2')
+        nslug = request.form.get('slug')
+        if post_id=='0':
+            post=Post_id(title=ntitle,sub_title=nsub_title,location=nlocation,author=nauthor,date_posted=ndate_posted,image=nimage,content_1=ncontent_1,content_2=ncontent_2,slug=nslug)
+            db.session.add(post)
+            db.session.commit()
+        post=Post_id.query.filter_by(post_id=post_id).first()
+        return render_template('admin/edit.html', params=params, post=post, post_id=post_id)
+
+
 
 
 
