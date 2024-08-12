@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request
+from flask import Flask,render_template,request,redirect,url_for,session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import*
 import json
@@ -110,11 +110,33 @@ def edit(post_id):
         ncontent_2 = request.form.get('content_2')
         nslug = request.form.get('slug')
         if post_id=='0':
-            post=Post_id(title=ntitle,sub_title=nsub_title,location=nlocation,author=nauthor,date_posted=ndate_posted,image=nimage,content_1=ncontent_1,content_2=ncontent_2,slug=nslug)
+            post=Post_id(title=ntitle,sub_title=nsub_title,location=nlocation,author=nauthor,date_posted=datetime.now(),image=nimage,content_1=ncontent_1,content_2=ncontent_2,slug=nslug)
             db.session.add(post)
             db.session.commit()
-        post=Post_id.query.filter_by(post_id=post_id).first()
-        return render_template('admin/edit.html', params=params, post=post, post_id=post_id)
+
+        else:
+            post=Post_id.query.filter_by(post_id=post_id).first()
+            post.title=ntitle
+            post.sub_title=nsub_title
+            post.location=nlocation
+            post.author=nauthor
+            post.date_posted=ndate_posted
+            post.image=nimage
+            post.content_1=ncontent_1
+            post.content_2=ncontent_2
+            post.slug=nslug
+            db.session.commit()
+        return redirect(url_for('admin'))
+
+    post=Post_id.query.filter_by(post_id=post_id).first()
+    return render_template('admin/edit.html', params=params, post=post, post_id=post_id)
+@app.route('/delete/<string:post_id>')
+def delete(post_id):
+    post=Post_id.query.filter_by(post_id=post_id).first()
+    db.session.delete(post)
+    db.session.commit()
+    return redirect('/admin')
+
 
 
 

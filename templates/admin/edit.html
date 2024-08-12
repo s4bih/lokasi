@@ -19,91 +19,60 @@
   <div class="row mb-3">
     <label for="inputEmail3" class="col-sm-2 col-form-label">title</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" name="title" placeholder="enter post title" id="inputEmail3">
+      <input type="text" class="form-control" name="title" placeholder="enter post title" id="inputEmail3" value="{{post.title}}">
     </div>
   </div>
   <div class="row mb-3">
     <label for="inputPassword3" class="col-sm-2 col-form-label">subtitle</label>
     <div class="col-sm-10">
-      <input type="text" name="subtitle" placeholder="enter post subtitle" class="form-control" id="inputPassword3">
+      <input type="text" name="subtitle" placeholder="enter post subtitle" value="{{post.subtitle}}" class="form-control" id="inputPassword3">
     </div>
   </div>
   <div class="row mb-3">
     <label for="inputPassword3" class="col-sm-2 col-form-label">location</label>
     <div class="col-sm-10">
-      <input type="text" name="location" placeholder="enter post location" class="form-control" >
+      <input type="text" name="location" placeholder="enter post location" value="{{post.location}}" class="form-control" >
     </div>
   </div>
   <div class="row mb-3">
     <label for="inputPassword3" class="col-sm-2 col-form-label">author</label>
     <div class="col-sm-10">
-      <input type="text" name="author" placeholder="enter post author" class="form-control" >
+      <input type="text" name="author" placeholder="enter post author" value="{{post.author}}" class="form-control" >
     </div>
   </div>
   <div class="row mb-3">
     <label for="inputPassword3" class="col-sm-2 col-form-label">date</label>
     <div class="col-sm-10">
-      <input type="date" name="subtitle" placeholder="enter post subtitle" class="form-control" >
+      <input type="date" name="subtitle" placeholder="enter post subtitle" value="{{post.sub_title}}"  class="form-control" >
     </div>
   </div>
   <div class="row mb-3">
     <label for="inputPassword3" class="col-sm-2 col-form-label">image</label>
     <div class="col-sm-10">
-      <input type="text" name="subtitle" placeholder="enter post subtitle" class="form-control" >
+      <input type="text" name="subtitle" placeholder="enter post subtitle"  class="form-control" >
     </div>
   </div>
   <div class="row mb-3">
     <label for="inputPassword3" class="col-sm-2 col-form-label">content1</label>
     <div class="col-sm-10">
-      <textarea  name="content1" placeholder="enter post subtitle" class="form-control" ></textarea>
+      <textarea  name="content1" placeholder="enter post subtitle"  class="form-control" ></textarea>
     </div>
   </div>
   <div class="row mb-3">
     <label for="inputPassword3" class="col-sm-2 col-form-label">content2</label>
     <div class="col-sm-10">
-      <textarea name="content2" placeholder="enter post subtitle" class="form-control" ></textarea>
+      <textarea name="content2" placeholder="enter post subtitle"  class="form-control" ></textarea>
     </div>
   </div>
   <div class="row mb-3">
     <label for="inputPassword3" class="col-sm-2 col-form-label">slug</label>
     <div class="col-sm-10">
-      <input type="text" name="slug" placeholder="enter post slug" class="form-control" >
+      <input type="text" name="slug" placeholder="enter post slug"  class="form-control" >
     </div>
   </div>
-  <fieldset class="row mb-3">
-    <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
-    <div class="col-sm-10">
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-        <label class="form-check-label" for="gridRadios1">
-          First radio
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-        <label class="form-check-label" for="gridRadios2">
-          Second radio
-        </label>
-      </div>
-      <div class="form-check disabled">
-        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
-        <label class="form-check-label" for="gridRadios3">
-          Third disabled radio
-        </label>
-      </div>
-    </div>
-  </fieldset>
-  <div class="row mb-3">
-    <div class="col-sm-10 offset-sm-2">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="gridCheck1">
-        <label class="form-check-label" for="gridCheck1">
-          Example checkbox
-        </label>
-      </div>
-    </div>
-  </div>
-  <button type="submit" class="btn btn-primary">Sign in</button>
+
+
+  <button type="submit" class="btn btn-primary">edit</button>
 </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>

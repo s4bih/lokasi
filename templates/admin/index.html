@@ -46,8 +46,8 @@
       <th scope="row">{{post.post_id}}</th>
       <td>{{post.title}}</td>
       <td>
-      <a href=""><button type="button" class="btn btn-info" >edit</button></a>
-      <a href=""><button type="button" class="btn btn-danger" >DELETE</button></a>
+      <a href="/edit/{{post.post_id}}"><button type="button" class="btn btn-info" >edit</button></a>
+      <a href="/delete/{{post.post_id}}"><button type="button" class="btn btn-danger" >DELETE</button></a>
       </td>
     </tr>
     {%endfor%}
