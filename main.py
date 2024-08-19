@@ -39,6 +39,12 @@ class Post_id(db.Model):
     content_1 = db.Column(db.String(db.Text))
     content_2 = db.Column(db.String(db.Text))
     slug = db.Column(db.String(500),unique=True)
+class users(db.Model):
+    id=db.Column('id',db.Integer,primary_key=True)
+    name=db.Column(db.String(100))
+    username=db.Column(db.String(100))
+    email=db.Column(db.String(100))
+    password=db.Column(db.String(50))
 
 @app.route('/')
 def home():
@@ -135,9 +141,20 @@ def delete(post_id):
     post=Post_id.query.filter_by(post_id=post_id).first()
     db.session.delete(post)
     db.session.commit()
-    return redirect('/admin')
+    return redirect('/admin')   
 
+@app.route('/signup',methods=['GET','POST'])
+def signup():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        username = request.form.get('username')
+        password = request.form.get('password')
+        entry = users(name=name, email=email, username=username, password=password)
+        db.session.add(entry)
+        db.session.commit()
 
+    return render_template('signup.html',params=params)
 
 
 
