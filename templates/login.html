@@ -2,8 +2,15 @@
 
 {% block body %}
 <div class="container">
+    {% with messages = get_flashed_massages()%}
+    {% if messages %}
+    <div>
+        {{messages[0]}} go to <a href={{url_for('signup')}}>login</a>
+    </div>
+    {% endif %}
+    {% endwith %}
         <h1>Login</h1>
-        <form >
+        <form method="post" action="/login">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
             <label for="password">Password:</label>

@@ -3,6 +3,13 @@
 {% block body %}
 <div class="container">
         <h1>signup</h1>
+    {% with messages = get_flashed_massages()%}
+    {% if messages %}
+    <ul>
+        <li>{{messages[0]}} go to <a href={{url_for('login')}}>login</a></li>
+    </ul>
+    {% endif %}
+    {% endwith %}
         <form method="post" action="/signup">
             <label for="name">Username:</label>
             <input type="text" id="name" name="name" required>
