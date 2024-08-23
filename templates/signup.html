@@ -3,7 +3,7 @@
 {% block body %}
 <div class="container">
         <h1>signup</h1>
-    {% with messages = get_flashed_massages()%}
+    {% with messages = get_flashed_messages()%}
     {% if messages %}
     <ul>
         <li>{{messages[0]}} go to <a href={{url_for('login')}}>login</a></li>

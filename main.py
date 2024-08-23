@@ -18,7 +18,7 @@ if params["local_server"]:
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = params['prod_url']
 
-SECRET_KEY = params['secret_key']
+app.config['SECRET_KEY'] = params['secret_key']
 
 app.config['SECRET_KEY']
 db=SQLAlchemy(app)
@@ -74,6 +74,7 @@ def home():
 @app.route("/post/<slug>",methods=['GET','POST'])
 def post(slug):
     p_data = Post_id.query.filter_by(slug=slug).first()
+
     return render_template('post.html',post=p_data,params=params)
 @app.route('/about')
 def about():
@@ -84,10 +85,11 @@ def login():
    if request.method == 'POST':
        username = request.form.get('username')
        password = request.form.get('password')
-       user=users.query.filter_by(username=username).first()
+       user=users.query.filter_by(username=username,password=password).first()
        if user and user.password == password:
            login_user(user)
-           return redirect('/dashboard')
+           return redirect(url_for('admin'))
+
        else:
            flash("Invalid credentials")
            return redirect('/login')
@@ -111,9 +113,14 @@ def contact():
         print(name, email, msg)
     return render_template('contact.html',params=params)
 @app.route('/admin',methods=['GET','POST'])
+@login_required
 def admin():
+    user = current_user.name
     post = Post_id.query.filter_by().all()
+
     contact=Contact.query.filter_by().all()
+    if not current_user.username=='i':
+        style="display:none"
 
     return render_template('admin/index.html',params=params,posts=post,contact=contact)
 @app.route('/edit/<string:post_id>',methods=['GET','POST'])
@@ -164,7 +171,7 @@ def signup():
 
         username = request.form.get('username')
         password = request.form.get('password')
-        user=users.query.filter_by(email).first()
+        user=users.query.filter_by(email=email).first()
         if user:
             flash="email already exists"
             return redirect(url_for('signup'))
@@ -173,6 +180,10 @@ def signup():
         db.session.commit()
 
     return render_template('signup.html',params=params)
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
 
 
 

@@ -9,6 +9,10 @@
 </head>
 <body>
 <h1>admin</h1>
+<br>
+<h5>welcome{{current_user.username}}</h5>
+<br>
+
 <p class="d-inline-flex gap-1">
     <a class="btn btn-primary" data-bs-toggle="collapse" href="#post" role="button" aria-expanded="false"
        aria-controls="collapseExample">
@@ -22,10 +26,8 @@
        aria-controls="collapseExample">
         contact
     </a>
-    <button class="btn btn-primary" type="button" data-bs-toggle="" data-bs-target="#collapseExample"
-            aria-expanded="false" aria-controls="collapseExample">
-        logout
-    </button>
+    <a class="btn-btn-primary" href="{{url_for('logout')}}">logout</a>
+
 
 </p>
 <div class="collapse" id="post">
